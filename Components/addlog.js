@@ -16,7 +16,7 @@ export default class Main extends Component {
         this.state = {
             noteArray: [{
                 type: 'Income',
-                amount: 500,
+                amount: 5000,
                 category: 'pocket money',
                 details: 'from mum',
             },
@@ -25,6 +25,7 @@ export default class Main extends Component {
                 amount: 45,
                 category: 'grocery shopping',
                 details: 'tesco',
+                
             },
             {
                 type: 'Income',
@@ -33,9 +34,9 @@ export default class Main extends Component {
                 details: 'friend return borrow money ',
             },],
             type:'Expenses',
-            amount:12,
-            category:'dinner',
-            details: 'subway',
+            amount:'',
+            category:'',
+            details: '',
 
         };
     }
@@ -47,14 +48,23 @@ export default class Main extends Component {
     
         for(var i=0; i < text.length; i++) {
             if(numbers.indexOf(text[i]) > -1 ) {
+
                 newText = newText + text[i];
+
+
             }
             else {
                 // your call back function
+                this.setState({ amount: '' }),
                 alert("please enter numbers only");
+                
             }
+
+            this.setState({ amount: newText })
         }
-        this.setState({ amount: text });
+
+        
+        
     }
 
     render() {
