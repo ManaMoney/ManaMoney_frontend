@@ -3,13 +3,12 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   Image,
 } from "react-native";
 
 //library imports 
 import { Container, Content, Icon, Header, Body } from 'native-base';
-import { createDrawerNavigator, StackNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
+import { createDrawerNavigator, DrawerItems, } from 'react-navigation';
 
 import SettingsScreen from './Page/SettingsScreen';
 import HomeScreen from "./Page/HomeScreen";

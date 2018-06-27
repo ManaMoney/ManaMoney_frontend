@@ -18,7 +18,7 @@ class Daily extends Component {
         return(
             <Container>
             <Content>
-            <Main/>
+             <Main/>
             </Content>
         </Container>
 

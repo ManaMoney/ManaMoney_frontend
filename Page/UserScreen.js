@@ -9,6 +9,7 @@ import {
 import { Container, Content, Icon } from 'native-base';
 import CustomHeader from '../Components/CustomHeader';
 import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+import { Constants } from 'expo';
 
 class UserScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -25,7 +26,7 @@ class UserScreen extends Component {
     render() {
         return (
 
-            <Container>
+            <Container style={styles.container} >
 
                 <CustomHeader
                     title="User"
@@ -67,5 +68,8 @@ const styles = StyleSheet.create({
     icon: {
         height: 24,
         width: 24
-    }
+    },
+    container: {
+        paddingTop: Constants.statusBarHeight,
+    },
 })

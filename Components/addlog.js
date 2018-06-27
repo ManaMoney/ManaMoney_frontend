@@ -14,18 +14,54 @@ export default class Main extends Component {
     constructor(props){
         super(props);
         this.state = {
-            noteArray: [],
+            noteArray: [{
+                type: 'Income',
+                amount: 500,
+                category: 'pocket money',
+                details: 'from mum',
+            },
+            {
+                type: 'Expenses',
+                amount: 45,
+                category: 'grocery shopping',
+                details: 'tesco',
+            },
+            {
+                type: 'Income',
+                amount: 5,
+                category: 'return',
+                details: 'friend return borrow money ',
+            },],
             type:'Expenses',
-            amount:'',
-            category:'',
-            details: '',
+            amount:12,
+            category:'dinner',
+            details: 'subway',
 
         };
     }
+
+    onChanged(text){
+        let newText = '';
+        let numbers = '0123456789';
+
+    
+        for(var i=0; i < text.length; i++) {
+            if(numbers.indexOf(text[i]) > -1 ) {
+                newText = newText + text[i];
+            }
+            else {
+                // your call back function
+                alert("please enter numbers only");
+            }
+        }
+        this.setState({ amount: text });
+    }
+
     render() {
         let notes = this.state.noteArray.map((val, key)=>{
             return <Note key={key} keyval={key} val={val}
                     deleteMethod={()=>this.deleteNote(key)}/>
+
         });
         return (
             <View style={styles.container}>
@@ -48,8 +84,9 @@ export default class Main extends Component {
                     <Text>Amount</Text>
                     <TextInput 
                         placeholder="Input amount spend/earn" 
+                        keyboardType='numeric'
                         value={this.state.amount} 
-                        onChangeText = { (x) => this.setState({ amount: x}) } />
+                        onChangeText={(text)=> this.onChanged(text)} />
                     <Text>Category</Text>
                     <TextInput 
                         placeholder="Category" 
@@ -102,9 +139,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#E91E63',
         alignItems: 'center',
         justifyContent:'center',
-        borderBottomWidth: 4,
+        borderBottomWidth: 2,
         borderBottomColor: '#ddd',
-        bottom:250,
+        bottom:200,
     },
     headerText: {
         color: 'white',
@@ -117,8 +154,8 @@ const styles = StyleSheet.create({
         marginBottom: 100
     },
     footer: {
-        position: 'absolute',
-        bottom: 60,
+        position: 'relative',
+        bottom: 180,
         left: 0,
         right: 0,
         zIndex: 10
@@ -137,7 +174,7 @@ const styles = StyleSheet.create({
         height:60,
         backgroundColor:'blue',
         borderRadius:30,
-        bottom:20,
+        bottom:70,
         right:20,
         alignItems:'center',
         justifyContent:'center'

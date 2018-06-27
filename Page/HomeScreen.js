@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import { View, Text,TextInput, StyleSheet, Image,TouchableOpacity,Picker} from "react-native";
-import {createStackNavigator} from 'react-navigation';
-import { Icon,Container, Header, Content, Left } from 'native-base';
-import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+import {createStackNavigator,SafeAreaView} from 'react-navigation';
+import { Icon,Container, } from 'native-base';
+import { Card, FormLabel,} from "react-native-elements";
 
 //custom components imports 
 import CustomHeader from '../Components/CustomHeader';
 import Tab from './TabNavigator';
-import Note from '../Components/addlog';
+import Main from '../Components/addlog';
+import { Constants } from 'expo';
 
-//delete props if error
-class Note extends React.Component {
+//var here to get araay
+
+//the button in homescreen provide page for addlog. But not the function
+//while the visible button on homepage did the function of input and showing the log on homescreen
+
+class NotePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,11 +30,37 @@ class Note extends React.Component {
       };
     }
 
-  _submiting = () => {
-      this.props.navigation.navigate('Homes');
-      this.addNote.bind(this);
-      
+    addNote=()=>{
+      if(this.state.amount){
+          var d = new Date();
+          this.state.noteArray.push({
+              'date':d.getFullYear()+
+              "/"+(d.getMonth()+1) +
+              "/"+ d.getDate(),
+              'type': this.state.type,
+              'amount': this.state.amount,
+              'category': this.state.category,
+              'details': this.state.details,
+
+          });
+          this.setState({ noteArray: this.state.noteArray });
+          this.setState({amount:''});
+          this.setState({details:''});
+      }
   }
+
+  deleteNote(key){
+    this.state.noteArray.splice(key, 1);
+    this.setState({noteArray: this.state.noteArray});
+}
+
+  _submiting=()=>{
+    this.props.navigation.navigate('Homes');
+    this.addNote.bind(this);
+//call function post data
+
+  }
+
     
   render(){
       return(
@@ -44,6 +75,7 @@ class Note extends React.Component {
   </Picker> 
     <FormLabel>Amount</FormLabel>
     <TextInput value={this.state.amount}
+            keyboardType='numeric'
             placeholder="100.0"
             onChangeText= { (x) => this.setState({ amount: x}) } />
     <FormLabel>Category</FormLabel>
@@ -100,21 +132,25 @@ class HomeScreen extends Component {
 }
 
   render() {
+
+
+
+  
     return (
       
-      <Container >
+      <Container style = {styles.container} >
+        <SafeAreaView>
         <CustomHeader drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
+        </SafeAreaView>
         <Tab/>
-
-        
-        
-        <Text style={styles.brief} > Budget:   Expenses:    </Text>
-      
         <TouchableOpacity style={styles.btn}
             onPress={this._click}
             >
             <Text style = {styles.plus} >+</Text>
             </TouchableOpacity> 
+        <Text style={styles.brief} > Budget:   Expenses:    </Text>
+      
+      
       </Container>
       
 
@@ -126,7 +162,7 @@ class HomeScreen extends Component {
 
 export default Stack = createStackNavigator ({
   Homes : { screen : HomeScreen, },
-  Note : { screen: Note, },
+  Note : { screen: NotePage, },
 },
   {
     headerMode: 'none',
@@ -139,6 +175,9 @@ export default Stack = createStackNavigator ({
 
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: Constants.statusBarHeight,
+},
   icon: {
     width: 24,
     height: 24,
@@ -179,7 +218,7 @@ brief: {
   backgroundColor: 'rgba(52, 52, 52, 0.8)',
   borderTopWidth:2,
   borderTopColor: '#ededed',
-  bottom: 50,
+  bottom: 15,
 },
 input: {
   padding:10,

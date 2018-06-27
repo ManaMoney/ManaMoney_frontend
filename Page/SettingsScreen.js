@@ -5,12 +5,14 @@ import {
     TextInput,
     StyleSheet,
     Image,
-    Picker,
 } from "react-native";
 
 import { Container, Content, Icon } from 'native-base';
 import CustomHeader from '../Components/CustomHeader';
-import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+import { Card, Button, FormLabel, } from "react-native-elements";
+import { Constants } from 'expo';
+
+
 
 
 class SettingsScreen extends Component {
@@ -30,7 +32,7 @@ class SettingsScreen extends Component {
     render() {
         return (
 
-            <Container>
+            <Container style={styles.container} >
                 <Content>
                 <CustomHeader
                     title="Settings"
@@ -71,6 +73,9 @@ class SettingsScreen extends Component {
 export default SettingsScreen
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: Constants.statusBarHeight,
+    },
     icon: {
         height: 24,
         width: 24
