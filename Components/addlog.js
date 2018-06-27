@@ -81,7 +81,7 @@ export default class Main extends Component {
                 <ScrollView style={styles.scrollContainer}>
                     {notes}
                 </ScrollView>
-                <View >
+                <View style={styles.input}>
                 <Text>Type</Text>
                      <Picker
                         selectedValue={this.state.type}
@@ -178,13 +178,16 @@ const styles = StyleSheet.create({
         borderTopWidth:2,
         borderTopColor: '#ededed'
     },
+    input:{
+        bottom: 20,
+    },
     addButton: {
         position:'absolute',
         width:60,
         height:60,
         backgroundColor:'blue',
         borderRadius:30,
-        bottom:70,
+        bottom:30,
         right:20,
         alignItems:'center',
         justifyContent:'center'

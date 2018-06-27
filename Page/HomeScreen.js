@@ -143,11 +143,7 @@ class HomeScreen extends Component {
         <CustomHeader drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
         </SafeAreaView>
         <Tab/>
-        <TouchableOpacity style={styles.btn}
-            onPress={this._click}
-            >
-            <Text style = {styles.plus} >+</Text>
-            </TouchableOpacity> 
+        
         <Text style={styles.brief} > Budget:   Expenses:    </Text>
       
       
@@ -226,3 +222,8 @@ input: {
 },
 });
 
+{/* <TouchableOpacity style={styles.btn}
+            onPress={this._click}
+            >
+            <Text style = {styles.plus} >+</Text>
+            </TouchableOpacity>  */}
