@@ -19,12 +19,14 @@ export default class Main extends Component {
                 amount: 5000,
                 category: 'pocket money',
                 details: 'from mum',
+                date: '14/3/2015',
             },
             {
                 type: 'Expenses',
                 amount: 45,
                 category: 'grocery shopping',
                 details: 'tesco',
+                date: '30/2/2018',
                 
             },
             {
@@ -32,11 +34,13 @@ export default class Main extends Component {
                 amount: 5,
                 category: 'return',
                 details: 'friend return borrow money ',
+                date: '30/4/2018',
             },],
             type:'Expenses',
             amount:'',
             category:'',
             details: '',
+            date:'',
 
         };
     }
